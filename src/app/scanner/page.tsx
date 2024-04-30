@@ -6,7 +6,6 @@ import "../styles/QrStyles.css";
 
 // Qr Scanner
 import QrScanner from "qr-scanner";
-import QrFrame from "../assets/qr-frame.svg";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Box, Button } from "@mui/material";
 
