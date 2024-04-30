@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 // Styles
 import "../styles/QrStyles.css";
@@ -7,7 +7,7 @@ import "../styles/QrStyles.css";
 // Qr Scanner
 import QrScanner from "qr-scanner";
 import QrFrame from "../assets/qr-frame.svg";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Box, Button } from "@mui/material";
 
 export default function Scanner() {
@@ -19,12 +19,24 @@ export default function Scanner() {
   const router = useRouter();
   const [scannedResult, setScannedResult] = useState<string | undefined>("");
   const [startScan, setStartScan] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString())
+      params.set(name, value)
+ 
+      return params.toString()
+    },
+    [searchParams]
+  )
 
   // Success
   const onScanSuccess = (result: QrScanner.ScanResult) => {
     console.log(result);
     setScannedResult(result?.data);
-    router.push(result?.data);
+    router.push(pathname.replace("scanner","") + '?' + createQueryString('user', `${result?.data}`) );
   };
 
   // Fail
@@ -96,7 +108,6 @@ export default function Scanner() {
           className="w-full"
           onClick={() => {
             setStartScan(true);
-            console.log(startScan);
           }}
         >
           scan qr code

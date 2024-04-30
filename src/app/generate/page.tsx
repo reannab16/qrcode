@@ -28,7 +28,7 @@ export default function Generate() {
   
 
   const onGenerate = () => {
-    setqrval(pathname.replace("generate","") + '?' + createQueryString('user', `${name}`));
+    setqrval(name);
 
     console.log(qrval);
   };
