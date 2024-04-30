@@ -10,12 +10,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
 export default function Generate() {
-  const [name, setName] = useState("");
-  const [qrval, setqrval] = useState("");
-  const router = useRouter();
-  const pathname = usePathname();
-
   function Search() {
+    const [name, setName] = useState("");
+    const [qrval, setqrval] = useState("");
+    const router = useRouter();
+    const pathname = usePathname();
     const searchParams = useSearchParams();
 
     const createQueryString = useCallback(
