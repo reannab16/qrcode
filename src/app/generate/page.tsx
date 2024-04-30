@@ -12,19 +12,11 @@ export default function Generate() {
 
   const onGenerate = () => {
     setqrval(name);
-
-    console.log(qrval);
   };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
+      <form
         className=" border-[1px] border-slate-400 rounded-md shadow-sm flex items-center justify-center p-4 flex-col gap-y-2"
       >
         <div className="flex flex-col items-center justify-start p-2">
@@ -69,7 +61,7 @@ export default function Generate() {
             viewBox={`0 0 256 256`}
           />
         </div>
-      </Box>
+      </form>
     </main>
   );
 }
